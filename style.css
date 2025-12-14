@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body, html{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    background-image: url(assets/Cartoon_green_texture_grass.jpg);
+    background-size: cover;
+    overflow: hidden;
+    cursor: none;
+}
+
+h1{
+    font-size: 6vmin;
+    color: white;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px black;
+}
+
+.score-board{
+    font-size: 4vmin;
+    color: white;
+
+}
+
+.game{
+
+    height: 70vh;
+    width: 70vh;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+    gap: 5vmin;
+    margin-top: 20px;
+}
+
+.hole{
+    background-color: rgb(170, 97, 2);
+    border-radius: 50%;
+    box-shadow: inset 0 7px 0 5px rgb(77, 41, 1),
+                inset 1px 15px 20px 10px rgba(0, 0, 0, 0.6),
+                0 4px 6px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.hole .mole {
+    width: 70%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    animation: up .3s ease-out;
+}
+
+@keyframes up{
+    0%{
+        transform: translateX(-50%) translateY(100%);
+    }
+    100%{
+        transform: translateX(-50%) translateY(0%);
+    }
+}
+
+.cursor{
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    background-image: url(assets/hammer_red.png);
+    background-size: 100% 100%;
+    transform: translate(-50%, -50%) scaleX(-1) rotate(-45deg) ;
+    transition: transform 0.1s;
+    pointer-events: none; 
+}
+
+.cursor.active{
+    transform: translate(-50%, -50%) scaleX(-1) rotate(45deg);
+}

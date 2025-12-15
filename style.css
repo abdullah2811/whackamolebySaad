@@ -6,6 +6,7 @@
 body, html{
     height: 100%;
     width: 100%;
+    padding-top: 20px;
 }
 
 body{
@@ -28,7 +29,70 @@ h1{
 .score-board{
     font-size: 4vmin;
     color: white;
+    display: flex;
+    gap: 4vmin;
+    align-items: center;
+}
 
+.timer{
+    background: linear-gradient(135deg, #FF6B6B, #FF8E72);
+    padding: 1vmin 2vmin;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    display: flex;
+    gap: 0.5vmin;
+    align-items: center;
+}
+
+.timer-value{
+    min-width: 3vmin;
+    text-align: center;
+}
+
+.timer-value.warning{
+    animation: pulse 0.6s infinite;
+    color: #FFE66D;
+}
+
+.controls{
+    display: flex;
+    gap: 1vmin;
+}
+
+.start-btn, .pause-btn{
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    padding: 0.8vmin 1.5vmin;
+    font-size: 2vmin;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.start-btn:hover, .pause-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.start-btn:active, .pause-btn:active{
+    transform: translateY(0px);
+}
+
+.start-btn.hidden, .pause-btn.hidden{
+    display: none;
+}
+
+@keyframes pulse{
+    0%, 100%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
 }
 
 .game{
@@ -84,4 +148,93 @@ h1{
 
 .cursor.active{
     transform: translate(-50%, -50%) scaleX(-1) rotate(45deg);
+}
+
+/* Game Over Overlay */
+.game-over-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.game-over-overlay.hidden{
+    display: none;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.game-over-content{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 4vmin;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 5px solid #FFD700;
+}
+
+@keyframes popIn{
+    0%{
+        transform: scale(0);
+        opacity: 0;
+    }
+    50%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.game-over-content h2{
+    font-size: 6vmin;
+    color: white;
+    margin-bottom: 2vmin;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.final-score{
+    font-size: 4vmin;
+    color: #FFE66D;
+    margin-bottom: 3vmin;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.restart-btn{
+    background: linear-gradient(135deg, #FF6B6B, #FF8E72);
+    color: white;
+    border: none;
+    padding: 1.5vmin 3vmin;
+    font-size: 2.5vmin;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.restart-btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+}
+
+.restart-btn:active{
+    transform: translateY(-1px);
 }
